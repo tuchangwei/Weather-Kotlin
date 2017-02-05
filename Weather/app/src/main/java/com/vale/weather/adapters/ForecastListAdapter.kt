@@ -1,4 +1,4 @@
-package com.vale.weather
+package com.vale.weather.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import android.widget.TextView
 /**
  * Created by vale on 05/02/2017.
  */
-class ForecastListAdapter(val items: List<String>):RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+class ForecastListAdapter(val items: List<String>): RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = items[position]
     }

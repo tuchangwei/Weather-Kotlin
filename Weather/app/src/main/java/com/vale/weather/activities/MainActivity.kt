@@ -1,9 +1,11 @@
-package com.vale.weather
+package com.vale.weather.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.vale.weather.R
+import com.vale.weather.adapters.ForecastListAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
