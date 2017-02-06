@@ -1,4 +1,4 @@
-package com.vale.weather.adapters
+package com.vale.weather.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
