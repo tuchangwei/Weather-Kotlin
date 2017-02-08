@@ -11,6 +11,7 @@ import com.vale.weather.R
 import com.vale.weather.domain.model.Forecast
 import com.vale.weather.domain.model.ForecastList
 import com.vale.weather.ui.utils.ctx
+import kotlinx.android.synthetic.main.item_forecast.view.*
 import org.jetbrains.anko.find
 import org.w3c.dom.Text
 
@@ -31,19 +32,14 @@ class ForecastListAdapter(val weekForecast: ForecastList,
     }
 
     class ViewHolder(val view: View, val itemClick: (Forecast)->Unit): RecyclerView.ViewHolder(view) {
-        private val iconView = view.find<ImageView>(R.id.icon)
-        private val dateView = view.find<TextView>(R.id.date)
-        private val descriptionView = view.find<TextView>(R.id.descrpition)
-        private val maxTemperatureView = view.find<TextView>(R.id.maxTemperature)
-        private val minTemperatureView = view.find<TextView>(R.id.minTemperature)
 
         fun bindForecast(forecast: Forecast) {
             with(forecast) {
-                Picasso.with(itemView.ctx).load(iconUrl).into(iconView)
-                dateView.text = date
-                descriptionView.text = description
-                maxTemperatureView.text = "${high}º"
-                minTemperatureView.text = "${low}º"
+                Picasso.with(itemView.ctx).load(iconUrl).into(itemView.icon)
+                itemView.date.text = date
+                itemView.descrpition.text = description
+                itemView.maxTemperature.text = "${high}º"
+                itemView.minTemperature.text = "${low}º"
                 itemView.setOnClickListener { itemClick(this) }
             }
         }

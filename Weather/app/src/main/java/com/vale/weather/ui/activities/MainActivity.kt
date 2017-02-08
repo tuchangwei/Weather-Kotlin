@@ -11,18 +11,17 @@ import com.vale.weather.domain.commands.RequestForecastCommand
 import com.vale.weather.domain.model.Forecast
 import com.vale.weather.ui.adapters.ForecastListAdapter
 import com.vale.weather.ui.adapters.OnItemClickListener
+import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity(), AnkoLogger {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val forecastList: RecyclerView = find(R.id.forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
 
         doAsync {
             val result = RequestForecastCommand("94043").execute()
-            info {result}
             uiThread {
                 forecastList.adapter = ForecastListAdapter(result) { forecast ->
                        toast(forecast.date)
