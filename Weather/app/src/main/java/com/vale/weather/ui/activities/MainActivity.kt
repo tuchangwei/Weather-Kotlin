@@ -8,7 +8,9 @@ import android.util.Log
 import com.vale.weather.R
 import com.vale.weather.data.ForecastRequest
 import com.vale.weather.domain.commands.RequestForecastCommand
+import com.vale.weather.domain.model.Forecast
 import com.vale.weather.ui.adapters.ForecastListAdapter
+import com.vale.weather.ui.adapters.OnItemClickListener
 import org.jetbrains.anko.*
 
 class MainActivity : AppCompatActivity(), AnkoLogger {
@@ -22,7 +24,11 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
             val result = RequestForecastCommand("94043").execute()
             info {result}
             uiThread {
-                forecastList.adapter = ForecastListAdapter(result)
+                forecastList.adapter = ForecastListAdapter(result, object : OnItemClickListener {
+                    override fun invoke(forecast: Forecast) {
+                       toast(forecast.date)
+                    }
+                })
             }
         }
     }

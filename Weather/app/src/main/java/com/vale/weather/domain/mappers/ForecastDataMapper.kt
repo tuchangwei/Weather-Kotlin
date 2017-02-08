@@ -17,19 +17,24 @@ class ForecastDataMapper {
         return list.mapIndexed { i, forecast ->
             val dt = Calendar.getInstance().timeInMillis
             + TimeUnit.DAYS.toMillis(i.toLong())
-            convertForecastIntemToDomain(forecast.copy(dt=dt))
+            convertForecastItemToDomain(forecast.copy(dt=dt))
         }
     }
 
-    private fun convertForecastIntemToDomain(forecast: Forecast): ModelForecast {
+    private fun convertForecastItemToDomain(forecast: Forecast): ModelForecast {
        return ModelForecast(convertDate(forecast.dt),
                forecast.weather[0].description,
                forecast.temp.max.toInt(),
-               forecast.temp.min.toInt())
+               forecast.temp.min.toInt(),
+               generateIconUrl(forecast.weather[0].icon))
     }
 
     private fun convertDate(date: Long): String {
         val dt = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
         return dt.format(date)
     }
+
+    private fun generateIconUrl(iconCode: String) = "http://openweathermap.org/img/w/$iconCode.png"
+
+
 }
