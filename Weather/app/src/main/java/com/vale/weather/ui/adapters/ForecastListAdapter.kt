@@ -18,7 +18,7 @@ interface OnItemClickListener {
     operator fun invoke(forecast: Forecast)
 }
 class ForecastListAdapter(val weekForecast: ForecastList,
-                          val itemClick:OnItemClickListener): RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
+                          val itemClick:(Forecast)-> Unit): RecyclerView.Adapter<ForecastListAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindForecast(weekForecast[position])
     }
@@ -30,7 +30,7 @@ class ForecastListAdapter(val weekForecast: ForecastList,
         return ViewHolder(view, itemClick)
     }
 
-    class ViewHolder(val view: View, val itemClick: OnItemClickListener): RecyclerView.ViewHolder(view) {
+    class ViewHolder(val view: View, val itemClick: (Forecast)->Unit): RecyclerView.ViewHolder(view) {
         private val iconView = view.find<ImageView>(R.id.icon)
         private val dateView = view.find<TextView>(R.id.date)
         private val descriptionView = view.find<TextView>(R.id.descrpition)

@@ -24,11 +24,9 @@ class MainActivity : AppCompatActivity(), AnkoLogger {
             val result = RequestForecastCommand("94043").execute()
             info {result}
             uiThread {
-                forecastList.adapter = ForecastListAdapter(result, object : OnItemClickListener {
-                    override fun invoke(forecast: Forecast) {
+                forecastList.adapter = ForecastListAdapter(result) { forecast ->
                        toast(forecast.date)
-                    }
-                })
+                }
             }
         }
     }
